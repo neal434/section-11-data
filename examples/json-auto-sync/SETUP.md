@@ -238,7 +238,11 @@ For additional privacy, use a **private repository** and a separate GitHub accou
 
 ## Using Private Repos with AI Agents
 
-Normal AI chats (ChatGPT Projects, Claude Projects, Gemini Gems, etc.) cannot access private GitHub repos — they need public URLs or manual file uploads. Agent platforms can access private repos through their own GitHub integrations:
+Normal AI chats (ChatGPT Projects, Claude Projects, Gemini Gems, etc.) cannot access private GitHub repos — they need public URLs or manual file uploads.
+
+Some web chat platforms (ChatGPT, Gemini) now offer GitHub integrations that can read private repos, but availability varies by plan and account. Claude Projects still requires public URLs or manual file uploads.
+
+For consistent private repo access, use an agentic platform:
 
 **OpenClaw** — Install the GitHub skill and authenticate with `gh auth login`. Once authenticated, OpenClaw can read files from any private repo your token has access to. For limited access, use a [fine-grained personal access token](https://github.com/settings/tokens?type=beta) scoped to your data repo only.
 
