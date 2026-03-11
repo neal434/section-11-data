@@ -4,6 +4,13 @@ Intervals.icu → GitHub/Local JSON Export
 Exports training data for LLM access.
 Supports both automated GitHub sync and manual local export.
 
+Version 3.79 - Feel/RPE fix: removed feel from daily history rows (activity-level field, not wellness),
+  added RPE to weekly history tier, correct activity-sourced aggregation with counts.
+  - _build_daily_rows: removed incorrect feel flattening to daily scalar
+  - _build_weekly_tier: added week_rpe collector, avg_rpe + rpe_count + feel_count in output
+  - Fixed null safety: feel collection uses `is not None` instead of truthy check
+  - Report templates updated: feel/RPE in post-workout, pre-workout, weekly, block reports
+
 Version 3.78 - Bug fix: weekly history aligned to configured week start (was hardcoded Monday)
   - _build_weekly_tier respects week_start_day setting; fixes Sunday-start week misalignment
   - Update checker: removed manifest.json fallback from _check_for_updates(), changelog.json only
@@ -86,7 +93,7 @@ class IntervalsSync:
     HISTORY_FILE = "history.json"
     UPSTREAM_REPO = "CrankAddict/section-11"
     CHANGELOG_FILE = "changelog.json"
-    VERSION = "3.78"
+    VERSION = "3.79"
 
     # Sport family mapping for per-sport monotony calculation
     # Multi-sport athletes get inflated total monotony when cross-training
@@ -3509,18 +3516,10 @@ class IntervalsSync:
                 "sleep_hours": round(wellness.get("sleepSecs", 0) / 3600, 2) if wellness.get("sleepSecs") else None,
                 "sleep_formatted": self._format_duration(int(wellness.get("sleepSecs", 0)) // 60 * 60) if wellness.get("sleepSecs") else None,
                 "sleep_quality": wellness.get("sleepQuality"),
-                "feel": None,  # Not available in wellness, only in activities
                 "weight_kg": wellness.get("weight"),
                 "is_hard_day": is_hard,
                 "intensity_basis": intensity_basis
             })
-            
-            # Check feel from activities
-            for a in day_activities:
-                feel = a.get("feel")
-                if feel:
-                    rows[-1]["feel"] = feel
-                    break
         
         return rows
     
@@ -3549,6 +3548,7 @@ class IntervalsSync:
             week_rhr = []
             week_sleep = []
             week_feel = []
+            week_rpe = []
             week_weight = []
             hard_days = 0
             daily_tss_list = []
@@ -3619,8 +3619,11 @@ class IntervalsSync:
                             total_zone_time += secs
                     
                     feel = a.get("feel")
-                    if feel:
+                    if feel is not None:
                         week_feel.append(feel)
+                    rpe = a.get("icu_rpe")
+                    if rpe is not None:
+                        week_rpe.append(rpe)
                 
                 is_hard, hard_basis = self._classify_hard_day(day_zones_by_basis)
                 if is_hard:
@@ -3662,6 +3665,9 @@ class IntervalsSync:
                 "hard_days": hard_days,
                 "longest_ride_hours": round(longest_ride / 3600, 2),
                 "avg_feel": round(statistics.mean(week_feel), 1) if week_feel else None,
+                "feel_count": len(week_feel) if week_feel else 0,
+                "avg_rpe": round(statistics.mean(week_rpe), 1) if week_rpe else None,
+                "rpe_count": len(week_rpe) if week_rpe else 0,
                 "weight_kg": round(week_weight[-1], 1) if week_weight else None,
                 "monotony": week_monotony,
                 "intensity_basis_breakdown": intensity_basis_counts if hard_days > 0 else None,

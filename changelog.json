@@ -1,13 +1,19 @@
 {
-  "notification_id": "2026-03-08",
+  "notification_id": "2026-03-11",
   "changes": [
-    "— sync.py v3.77 - Hash-based manifest for --update (all repo files tracked)",
-    "— sync.py v3.75→v3.76 + local sync pipeline + docs overhaul (2026-03-08) —",
-    "sync.py v3.75: --init (download full repo), --update (pull changed files from manifest), --lockfile (prevent overlapping runs), working directory awareness, manifest check on sync runs",
-    "sync.py v3.76: Bug fixes — workout summary trailing rep off-by-one (13-rep set reported as 12×30s), deload phase detection blind spot (Path C: retrospective deload from completed data when no plan exists)",
-    "manifest.json replaces changelog.json for update tracking. After updating to v3.76, sync.py reads manifest.json automatically.",
-    "New local deployment path: python3 sync.py --setup → --init → section11/examples/sync.py. No GitHub needed. See examples/json-local-sync/SETUP.md",
-    "Documentation: README restructured (GitHub/local sync as equal paths, GitHub connector table). SETUP_ASSISTANT.md rewritten (two-question routing: platform type + sync method, four valid combos). SKILL.md rewritten (three-tier file fallback). All cross-references updated.",
+    "— sync.py v3.79 - Feel/RPE fix + report template updates (2026-03-11) —",
+    "Feel removed from daily history rows — it's an activity-level field, not wellness. Was incorrectly flattened to a daily scalar.",
+    "RPE added to weekly history tier (avg_rpe, rpe_count). Feel aggregation retained with correct activity-level sourcing (avg_feel, feel_count).",
+    "Null safety fix: feel collection uses `is not None` (feel=0 would have been silently dropped).",
+    "Report templates: feel/RPE added to post-workout (per-session), pre-workout (last session feel), weekly (avg + count), block (avg + prev block comparison).",
+    "Report examples updated to demonstrate feel/RPE presence and omit-if-null pattern.",
+    "— sync.py v3.78 - Week alignment, log rotation, update checker (2026-03-10) —",
+    "Weekly history tier (_build_weekly_tier) respects configured week_start_day — was hardcoded to Monday.",
+    "SKILL.md moved to repo root. HEARTBEAT_TEMPLATE.md moved to examples/agentic/openclaw/. Old openclaw/ folder removed. .gitignore added.",
+    "Terminology: 'workspace' → 'data directory' across SKILL.md, SETUP_ASSISTANT.md, DOSSIER_TEMPLATE.md, HEARTBEAT_TEMPLATE.md.",
+    "DOSSIER_TEMPLATE.md: added optional Data Path field for split-workspace setups.",
+    "Update checker: removed manifest.json fallback from _check_for_updates(), changelog.json only.",
+    "Log rotation: sync.log trimmed to 200 lines when over 1MB.",
     "Upgrade: replace your sync.py with the latest from github.com/CrankAddict/section-11/tree/main/examples/sync.py"
   ]
 }
