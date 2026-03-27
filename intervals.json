@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-26T23:00:15.688939",
+  "generated_at": "2026-03-27T00:03:24.110190",
   "version": "3.86",
   "scan_hours": 72,
   "retention_days": 8,
@@ -149,54 +149,6 @@
           "zone": 2,
           "training_load": 11.197558,
           "decoupling": 6.2452497
-        }
-      ]
-    },
-    {
-      "activity_id": "i133077049",
-      "date": "2026-03-18",
-      "type": "VirtualRide",
-      "name": "MyWhoosh - Downtown LA",
-      "interval_summary": [
-        "1x 80s 290w"
-      ],
-      "intervals": [
-        {
-          "type": "RECOVERY",
-          "duration_secs": 3753,
-          "avg_power": 208,
-          "max_power": 333,
-          "avg_hr": 136,
-          "max_hr": 147,
-          "avg_cadence": 84.94724,
-          "zone": 2,
-          "training_load": 47.220074,
-          "decoupling": 1.6228396
-        },
-        {
-          "type": "WORK",
-          "label": "80s@290w88rpm",
-          "duration_secs": 80,
-          "avg_power": 290,
-          "max_power": 422,
-          "avg_hr": 147,
-          "max_hr": 155,
-          "avg_cadence": 87.55,
-          "zone": 4,
-          "training_load": 1.6936816,
-          "decoupling": 11.06413
-        },
-        {
-          "type": "RECOVERY",
-          "duration_secs": 595,
-          "avg_power": 164,
-          "max_power": 398,
-          "avg_hr": 131,
-          "max_hr": 160,
-          "avg_cadence": 73.69916,
-          "zone": 1,
-          "training_load": 6.864129,
-          "decoupling": 22.613552
         }
       ]
     },
