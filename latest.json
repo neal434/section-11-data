@@ -70,7 +70,7 @@
   },
   "metadata": {
     "athlete_id": "REDACTED",
-    "last_updated": "2026-03-27T19:50:55.153127",
+    "last_updated": "2026-03-27T21:52:01.620220",
     "data_range_days": 7,
     "extended_range_days": 28,
     "version": "3.86"
@@ -161,7 +161,7 @@
       "w_prime": 28056,
       "w_prime_kj": 28.1,
       "p_max": 986,
-      "vo2max": null,
+      "vo2max": 59.0,
       "sports": {
         "cycling": {
           "lthr": 177,
@@ -213,7 +213,7 @@
       "respiration": null,
       "body_fat_pct": null,
       "abdomen_cm": null,
-      "steps": 886,
+      "steps": 3937,
       "hydration_volume_l": null,
       "kcal_consumed": null,
       "carbohydrates_g": null,
@@ -405,8 +405,8 @@
     "w_prime_kj": 28.1,
     "p_max": 986,
     "power_model_source": "wellness.sportInfo",
-    "vo2max": null,
-    "calculation_timestamp": "2026-03-27T19:50:55.151952",
+    "vo2max": 59.0,
+    "calculation_timestamp": "2026-03-27T21:52:01.618972",
     "data_quality": {
       "hrv_data_points": 7,
       "rhr_data_points": 7,
@@ -1208,7 +1208,7 @@
       "sleep_score": 69.0,
       "mental_energy": null,
       "avg_sleeping_hr": null,
-      "vo2max": null,
+      "vo2max": 59.0,
       "fatigue": null,
       "soreness": null,
       "stress": null,
@@ -1225,7 +1225,7 @@
       "respiration": null,
       "body_fat_pct": null,
       "abdomen_cm": null,
-      "steps": 886,
+      "steps": 3937,
       "hydration_volume_l": null,
       "kcal_consumed": null,
       "carbohydrates_g": null,
